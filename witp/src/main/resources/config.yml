@@ -29,6 +29,9 @@ auto-updater: true
 # true = players can join, false = players can't join.
 joining: true
 
+# Allow entry to parkour only 200 blocks away from zero coordinates
+spawn_only: true
+
 # -= BungeeCord options =-
 # Change the BungeeCord settings.
 # This also applies to servers who only want to run this plugin.

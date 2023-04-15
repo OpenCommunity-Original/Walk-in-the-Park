@@ -10,9 +10,12 @@ import dev.efnilite.ip.player.ParkourUser;
 import dev.efnilite.ip.session.Session;
 import dev.efnilite.ip.util.Util;
 import dev.efnilite.vilib.inventory.item.Item;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import static dev.efnilite.ip.util.Util.send;
 
 /**
  * The default parkour mode
@@ -42,8 +45,17 @@ public class DefaultMode implements Mode {
     @Override
     public void create(Player player) {
         if (!Option.JOINING) {
-            Util.send(player, "<red><bold>Joining is currently disabled.");
+            send(player, "<red><bold>Joining is currently disabled.");
             return;
+        }
+
+        if (Option.SPAWNONLY) {
+            Location playerLoc = player.getLocation();
+            Location zeroLoc = new Location(player.getWorld(), 0, playerLoc.getY(), 0);
+            if (playerLoc.distance(zeroLoc) > 200) {
+                send(player, Locales.getString(player, "other.spawn_only"));
+                return;
+            }
         }
 
         ParkourPlayer pp = ParkourPlayer.getPlayer(player);

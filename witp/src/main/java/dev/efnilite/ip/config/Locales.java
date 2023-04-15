@@ -172,8 +172,7 @@ public class Locales {
      * @param path   The full path of the item in the locale file
      * @return a non-null {@link Item} instance built from the description in the locale file
      */
-    @NotNull
-    public static Item getItem(@NotNull Player player, String path, String... replace) {
+    public static @NotNull Item getItem(@NotNull Player player, String path, String... replace) {
         ParkourUser user = ParkourUser.getUser(player);
         String locale = user == null ? Option.OPTIONS_DEFAULTS.get(ParkourOption.LANG) : user.locale;
 

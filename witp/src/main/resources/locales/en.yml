@@ -243,6 +243,7 @@ other:
   no_do: "<gray>You can''t do this right now."
   no_teleporting: "<white>You can''t enter the parkour world by teleporting!"
   customize: "<gray>Customize your parkour experience by using \"/parkour\""
+  spawn_only: "<red>You need to be at spawn to join into parkour."
 
   quit:
     material: "barrier"

@@ -21,6 +21,7 @@ import java.util.function.BiFunction;
  */
 public class Option {
 
+    public static boolean SPAWNONLY;
     public static boolean AUTO_UPDATER;
 
     // Config stuff
@@ -74,6 +75,7 @@ public class Option {
         // General settings
         AUTO_UPDATER = Config.CONFIG.getBoolean("auto-updater");
         JOINING = Config.CONFIG.getBoolean("joining");
+        SPAWNONLY = Config.CONFIG.getBoolean("spawn_only");
 
         // Worlds
         DELETE_ON_RELOAD = Config.CONFIG.getBoolean("world.delete-on-reload");
