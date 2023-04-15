@@ -20,10 +20,10 @@ public interface Mode {
     void create(Player player);
 
     /**
-     * @param locale The locale of the menu, used to adjust the name.
+     * @param player
      * @return The item used in menus to show this mode. If this item is null, the mode won't be displayed.
      */
-    @Nullable Item getItem(String locale);
+    @Nullable Item getItem(Player player);
 
     /**
      * @return The {@link Leaderboard} that belongs to this mode

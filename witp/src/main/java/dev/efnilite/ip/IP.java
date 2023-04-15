@@ -129,19 +129,11 @@ public final class IP extends ViPlugin {
         registerListener(new SessionChat());
         registerCommand("ip", new ParkourCommand());
 
-        // ----- Metrics -----
+        // ----- Locale -----
 
-        Metrics metrics = new Metrics(this, 9272);
-        metrics.addCustomChart(new SimplePie("using_sql", () -> Boolean.toString(Option.SQL)));
-        metrics.addCustomChart(new SimplePie("using_rewards", () -> Boolean.toString(Rewards.REWARDS_ENABLED)));
-        metrics.addCustomChart(new SimplePie("locale_count", () -> Integer.toString(Locales.locales.size())));
-        metrics.addCustomChart(new SingleLineChart("player_joins", () -> {
-            int joins = ParkourUser.joinCount;
-            ParkourUser.joinCount = 0;
-            return joins;
-        }));
-
-        logging.info("Loaded IP in " + Time.timerEnd("load") + "ms!");
+        LocaleAPI localeAPI = new LocaleAPI();
+        Bukkit.getPluginManager().registerEvents(localeAPI, this);
+        localeAPI.loadSupportedLocales(this);
     }
 
     @Override

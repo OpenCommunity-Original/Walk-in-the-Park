@@ -31,7 +31,6 @@ public class SpectatorMenu {
 
     public void open(Player player) {
         ParkourUser user = ParkourUser.getUser(player);
-        String locale = user == null ? Option.OPTIONS_DEFAULTS.get(ParkourOption.LANG) : user.locale;
 
         PagedMenu spectator = new PagedMenu(3, Locales.getString(player, "play.spectator.name"));
 
@@ -50,7 +49,7 @@ public class SpectatorMenu {
 
             int index = 0;
             for (ParkourPlayer pp : session.getPlayers()) {
-                Item item = Locales.getItem(locale, "play.spectator.head", pp.getName());
+                Item item = Locales.getItem(player, "play.spectator.head", pp.getName());
                 // Player head gathering
                 item.material(Material.PLAYER_HEAD);
 

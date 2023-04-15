@@ -21,7 +21,7 @@ public class SpectatorMode implements Mode {
 
     @Override
     @Nullable
-    public Item getItem(String locale) {
+    public Item getItem(Player player) {
         return null;
     }
 

@@ -112,8 +112,6 @@ public class ParkourPlayer extends ParkourUser {
     public ParkourPlayer(@NotNull Player player, @Nullable PreviousData previousData) {
         super(player, previousData);
 
-        this._locale = locale;
-
         // generic player settings
         player.setFlying(false);
         player.setAllowFlight(false);
@@ -200,12 +198,12 @@ public class ParkourPlayer extends ParkourUser {
 
                 List<Item> items = new ArrayList<>();
 
-                if (ParkourOption.PLAY.mayPerform(player)) items.add(Locales.getItem(locale, "play.item"));
-                if (ParkourOption.COMMUNITY.mayPerform(player)) items.add(items.size(), Locales.getItem(locale, "community.item"));
-                if (ParkourOption.SETTINGS.mayPerform(player)) items.add(items.size(), Locales.getItem(locale, "settings.item"));
-                if (ParkourOption.LOBBY.mayPerform(player)) items.add(items.size(), Locales.getItem(locale, "lobby.item"));
+                if (ParkourOption.PLAY.mayPerform(player)) items.add(Locales.getItem(player, "play.item"));
+                if (ParkourOption.COMMUNITY.mayPerform(player)) items.add(items.size(), Locales.getItem(player, "community.item"));
+                if (ParkourOption.SETTINGS.mayPerform(player)) items.add(items.size(), Locales.getItem(player, "settings.item"));
+                if (ParkourOption.LOBBY.mayPerform(player)) items.add(items.size(), Locales.getItem(player, "lobby.item"));
 
-                items.add(items.size(), Locales.getItem(locale, "other.quit"));
+                items.add(items.size(), Locales.getItem(player, "other.quit"));
 
                 List<Integer> slots = getEvenlyDistributedSlots(items.size());
                 Colls.range(0, items.size()).forEach(idx -> player.getInventory().setItem(slots.get(idx), items.get(idx).build()));

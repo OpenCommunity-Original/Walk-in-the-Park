@@ -173,12 +173,6 @@ public abstract class ParkourUser {
     public Session session;
 
     /**
-     * This user's locale
-     */
-    @NotNull
-    public String locale = Option.OPTIONS_DEFAULTS.get(ParkourOption.LANG);
-
-    /**
      * This user's scoreboard
      */
     public FastBoard board;
@@ -249,7 +243,7 @@ public abstract class ParkourUser {
      * @param format Any objects that may be given to the formatting of the string.
      */
     public void sendTranslated(String key, Object... format) {
-        send(Locales.getString(locale, key).formatted(format));
+        send(Locales.getString(player, key).formatted(format));
     }
 
     /**
@@ -270,8 +264,8 @@ public abstract class ParkourUser {
             top = new Score("?", "?", "?", 0);
         }
 
-        board.updateTitle(replace(Locales.getString(locale, "scoreboard.title"), top, high, generator));
-        board.updateLines(replace(Locales.getStringList(locale, "scoreboard.lines"), top, high, generator));
+        board.updateTitle(replace(Locales.getString(player, "scoreboard.title"), top, high, generator));
+        board.updateLines(replace(Locales.getStringList(player, "scoreboard.lines"), top, high, generator));
     }
 
     private List<String> replace(List<String> s, Score top, Score high, ParkourGenerator generator) {

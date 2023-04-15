@@ -35,7 +35,6 @@ public enum Config {
 
         // read config stuff
         Rewards.init();
-        Locales.init();
         Schematics.init();
         Option.init(initialLoad);
 

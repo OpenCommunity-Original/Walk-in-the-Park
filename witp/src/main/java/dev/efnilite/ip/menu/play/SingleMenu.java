@@ -28,7 +28,6 @@ public class SingleMenu {
 
     public void open(Player player) {
         ParkourUser user = ParkourUser.getUser(player);
-        String locale = user == null ? Option.OPTIONS_DEFAULTS.get(ParkourOption.LANG) : user.locale;
 
         List<Mode> modes = Registry.getModes();
 
@@ -37,7 +36,7 @@ public class SingleMenu {
         for (Mode mode : modes) {
             boolean permissions = Option.PERMISSIONS && !player.hasPermission("ip.gamemode." + mode.getName());
 
-            Item item = mode.getItem(locale);
+            Item item = mode.getItem(player);
 
             if (permissions || mode instanceof MultiMode || item == null) {
                 continue;

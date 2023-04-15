@@ -26,7 +26,6 @@ public class LeaderboardsMenu {
 
     public void open(Player player) {
         ParkourUser user = ParkourUser.getUser(player);
-        String locale = user == null ? Option.OPTIONS_DEFAULTS.get(ParkourOption.LANG) : user.locale;
 
         PagedMenu menu = new PagedMenu(3, Locales.getString(player, "%s.name".formatted(ParkourOption.LEADERBOARDS.path)));
 
@@ -34,7 +33,7 @@ public class LeaderboardsMenu {
         List<MenuItem> items = new ArrayList<>();
         for (Mode mode : Registry.getModes()) {
             Leaderboard leaderboard = mode.getLeaderboard();
-            Item item = mode.getItem(locale);
+            Item item = mode.getItem(player);
 
             if (leaderboard == null || item == null) {
                 continue;

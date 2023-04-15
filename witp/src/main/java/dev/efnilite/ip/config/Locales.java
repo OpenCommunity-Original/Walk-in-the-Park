@@ -3,6 +3,7 @@ package dev.efnilite.ip.config;
 import dev.efnilite.ip.IP;
 import dev.efnilite.ip.menu.ParkourOption;
 import dev.efnilite.ip.player.ParkourUser;
+import dev.efnilite.ip.util.LocaleAPI;
 import dev.efnilite.ip.util.Util;
 import dev.efnilite.vilib.inventory.item.Item;
 import dev.efnilite.vilib.util.Task;
@@ -19,13 +20,11 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -123,33 +122,14 @@ public class Locales {
      * @return a String
      */
     public static String getString(Player player, String path) {
-        ParkourUser user = ParkourUser.getUser(player);
-
-        String locale = user == null ? Option.OPTIONS_DEFAULTS.get(ParkourOption.LANG) : user.locale;
-
-        return getString(locale, path);
-    }
-
-    /**
-     * Gets a coloured String from the provided path in the provided locale file
-     *
-     * @param locale The locale
-     * @param path   The path
-     * @return a String
-     */
-    public static String getString(String locale, String path) {
-        return getValue(locale, config -> config.getString(path), "");
+        return LocaleAPI.getMessage(player, path);
     }
 
     /**
      * Gets an uncoloured String list from the provided path in the provided locale file
-     *
-     * @param locale The locale
-     * @param path   The path
-     * @return a String list
      */
-    public static List<String> getStringList(String locale, String path) {
-        return getValue(locale, config -> config.getStringList(path), Collections.emptyList());
+    public static List<String> getStringList(Player player, String path) {
+        return LocaleAPI.getStringList(player, path);
     }
 
     private static <T> T getValue(String locale, Function<FileConfiguration, T> f, T def) {
@@ -190,25 +170,16 @@ public class Locales {
      * @return a non-null {@link Item} instance built from the description in the locale file
      */
     @NotNull
-    public static Item getItem(String locale, String path, String... replace) {
-        if (locales.isEmpty()) { // during reloading
-            return new Item(Material.STONE, "");
-        }
-
-        FileConfiguration base = locales.get(locale);
-
-        String material = base.getString("%s.material".formatted(path));
-        String name = base.getString("%s.name".formatted(path));
-        String lore = base.getString("%s.lore".formatted(path));
+    public static Item getItem(Player player, String key, String... replace) {
+        String material = LocaleAPI.getMessage(player, key + ".material");
+        String name = LocaleAPI.getMessage(player, key + ".name");
+        List<String> loreList = LocaleAPI.getStringList(player, key + ".lore");
 
         if (material == null) {
             material = "";
         }
         if (name == null) {
             name = "";
-        }
-        if (lore == null) {
-            lore = "";
         }
 
         int idx = 0;
@@ -222,21 +193,23 @@ public class Locales {
             idx++;
         }
 
-        matcher = pattern.matcher(lore);
-
-        while (matcher.find()) {
-            if (idx == replace.length) {
-                break;
-            }
-
-            lore = lore.replaceFirst(matcher.group(), replace[idx]);
-            idx++;
-        }
-
         Item item = new Item(Material.getMaterial(material.toUpperCase()), name);
 
-        if (!lore.isEmpty()) {
-            item.lore(lore.split("\\|\\|"));
+        if (!loreList.isEmpty()) {
+            List<String> lore = new ArrayList<>();
+            for (String line : loreList) {
+                matcher = pattern.matcher(line);
+                while (matcher.find()) {
+                    if (idx == replace.length) {
+                        break;
+                    }
+
+                    line = line.replaceFirst(matcher.group(), replace[idx]);
+                    idx++;
+                }
+                lore.add(line);
+            }
+            item.lore(lore.toArray(new String[0]));
         }
 
         return item;

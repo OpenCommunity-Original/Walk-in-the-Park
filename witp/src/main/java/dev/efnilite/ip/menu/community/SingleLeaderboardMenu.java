@@ -38,7 +38,6 @@ public class SingleLeaderboardMenu {
 
         // init vars
         ParkourUser user = ParkourUser.getUser(player);
-        String locale = user == null ? Option.OPTIONS_DEFAULTS.get(ParkourOption.LANG) : user.locale;
         PagedMenu menu = new PagedMenu(3, Locales.getString(player, "%s.name".formatted(ParkourOption.LEADERBOARDS.path)));
 
         List<MenuItem> items = new ArrayList<>();

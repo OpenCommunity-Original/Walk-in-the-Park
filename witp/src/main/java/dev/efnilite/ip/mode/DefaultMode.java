@@ -8,7 +8,6 @@ import dev.efnilite.ip.menu.community.SingleLeaderboardMenu;
 import dev.efnilite.ip.player.ParkourPlayer;
 import dev.efnilite.ip.player.ParkourUser;
 import dev.efnilite.ip.session.Session;
-import dev.efnilite.ip.util.Util;
 import dev.efnilite.vilib.inventory.item.Item;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -32,8 +31,8 @@ public class DefaultMode implements Mode {
 
     @Override
     @Nullable
-    public Item getItem(String locale) {
-        return Locales.getItem(locale, "play.single.default");
+    public Item getItem(Player player) {
+        return Locales.getItem(player, "play.single.default");
     }
 
     @Override
