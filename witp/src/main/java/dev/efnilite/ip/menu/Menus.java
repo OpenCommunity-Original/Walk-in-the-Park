@@ -8,7 +8,6 @@ import dev.efnilite.ip.menu.lobby.PlayerManagementMenu;
 import dev.efnilite.ip.menu.play.PlayMenu;
 import dev.efnilite.ip.menu.play.SingleMenu;
 import dev.efnilite.ip.menu.play.SpectatorMenu;
-import dev.efnilite.ip.menu.settings.LangMenu;
 import dev.efnilite.ip.menu.settings.ParkourSettingsMenu;
 import dev.efnilite.ip.menu.settings.SettingsMenu;
 
@@ -29,7 +28,6 @@ public class Menus {
 
     // settings
     public static SettingsMenu SETTINGS = new SettingsMenu();
-    public static LangMenu LANG = new LangMenu();
     public static ParkourSettingsMenu PARKOUR_SETTINGS = new ParkourSettingsMenu();
 
     // lobby

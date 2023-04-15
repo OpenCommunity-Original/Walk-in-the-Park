@@ -30,8 +30,6 @@ public class SettingsMenu extends DynamicMenu {
             }
         }), player -> ParkourOption.PARKOUR_SETTINGS.mayPerform(player) && ParkourPlayer.isPlayer(player));
 
-        registerMainItem(1, 1, (player, user) -> Locales.getItem(player, "settings.lang.item", user != null ? Locales.getString(player, "name") : "?").click(event -> Menus.LANG.open(ParkourPlayer.getPlayer(event.getPlayer()))), player -> ParkourOption.LANG.mayPerform(player) && ParkourUser.isUser(player));
-
         registerMainItem(1, 2, (player, user) -> {
             // user has to be not-null to see this item
             assert user != null;
