@@ -173,7 +173,7 @@ public class Locales {
     public static Item getItem(Player player, String key, String... replace) {
         String material = LocaleAPI.getMessage(player, key + ".material");
         String name = LocaleAPI.getMessage(player, key + ".name");
-        List<String> loreList = LocaleAPI.getStringList(player, key + ".lore");
+        String lore = LocaleAPI.getMessage(player, key + ".lore");
 
         if (material == null) {
             material = "";
@@ -193,23 +193,15 @@ public class Locales {
             idx++;
         }
 
-        Item item = new Item(Material.getMaterial(material.toUpperCase()), name);
+        matcher = pattern.matcher(lore);
 
-        if (!loreList.isEmpty()) {
-            List<String> lore = new ArrayList<>();
-            for (String line : loreList) {
-                matcher = pattern.matcher(line);
-                while (matcher.find()) {
-                    if (idx == replace.length) {
-                        break;
-                    }
-
-                    line = line.replaceFirst(matcher.group(), replace[idx]);
-                    idx++;
-                }
-                lore.add(line);
+        while (matcher.find()) {
+            if (idx == replace.length) {
+                break;
             }
-            item.lore(lore.toArray(new String[0]));
+
+            lore = lore.replaceFirst(matcher.group(), replace[idx]);
+            idx++;
         }
 
         return item;
