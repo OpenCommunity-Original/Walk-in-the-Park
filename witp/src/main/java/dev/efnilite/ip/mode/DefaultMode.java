@@ -1,5 +1,10 @@
 package dev.efnilite.ip.mode;
 
+import com.sk89q.worldedit.bukkit.BukkitAdapter;
+import com.sk89q.worldguard.WorldGuard;
+import com.sk89q.worldguard.protection.ApplicableRegionSet;
+import com.sk89q.worldguard.protection.managers.RegionManager;
+import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import dev.efnilite.ip.config.Locales;
 import dev.efnilite.ip.config.Option;
 import dev.efnilite.ip.generator.ParkourGenerator;
@@ -9,6 +14,7 @@ import dev.efnilite.ip.player.ParkourPlayer;
 import dev.efnilite.ip.player.ParkourUser;
 import dev.efnilite.ip.session.Session;
 import dev.efnilite.vilib.inventory.item.Item;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -48,10 +54,12 @@ public class DefaultMode implements Mode {
             return;
         }
 
-        if (Option.SPAWNONLY) {
+        if (Option.SPAWNONLY && Bukkit.getPluginManager().isPluginEnabled("WorldGuard")) {
             Location playerLoc = player.getLocation();
-            Location zeroLoc = new Location(player.getWorld(), 0, playerLoc.getY(), 0);
-            if (playerLoc.distance(zeroLoc) > 200) {
+            RegionManager regionManager = WorldGuard.getInstance().getPlatform().getRegionContainer().get(BukkitAdapter.adapt(player.getWorld()));
+            ApplicableRegionSet regions = regionManager.getApplicableRegions(BukkitAdapter.asBlockVector(playerLoc));
+
+            if (!regions.getRegions().stream().anyMatch(region -> region.getId().equalsIgnoreCase("spawn"))) {
                 send(player, Locales.getString(player, "other.spawn_only"));
                 return;
             }
