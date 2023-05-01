@@ -1,6 +1,5 @@
 package dev.efnilite.ip.util;
 
-import dev.efnilite.ip.config.Locales;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;

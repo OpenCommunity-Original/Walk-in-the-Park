@@ -1,9 +1,7 @@
 package dev.efnilite.ip.menu.play;
 
 import dev.efnilite.ip.config.Locales;
-import dev.efnilite.ip.config.Option;
 import dev.efnilite.ip.menu.Menus;
-import dev.efnilite.ip.menu.ParkourOption;
 import dev.efnilite.ip.mode.Modes;
 import dev.efnilite.ip.player.ParkourPlayer;
 import dev.efnilite.ip.player.ParkourUser;

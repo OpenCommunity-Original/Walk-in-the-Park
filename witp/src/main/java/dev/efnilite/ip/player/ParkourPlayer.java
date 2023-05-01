@@ -63,7 +63,8 @@ public class ParkourPlayer extends ParkourUser {
                 || string.equals("true"); // for disk
     }
 
-    public record OptionContainer(ParkourOption option, BiConsumer<ParkourPlayer, String> consumer) { }
+    public record OptionContainer(ParkourOption option, BiConsumer<ParkourPlayer, String> consumer) {
+    }
 
     /**
      * @param player The player.
@@ -199,9 +200,12 @@ public class ParkourPlayer extends ParkourUser {
                 List<Item> items = new ArrayList<>();
 
                 if (ParkourOption.PLAY.mayPerform(player)) items.add(Locales.getItem(player, "play.item"));
-                if (ParkourOption.COMMUNITY.mayPerform(player)) items.add(items.size(), Locales.getItem(player, "community.item"));
-                if (ParkourOption.SETTINGS.mayPerform(player)) items.add(items.size(), Locales.getItem(player, "settings.item"));
-                if (ParkourOption.LOBBY.mayPerform(player)) items.add(items.size(), Locales.getItem(player, "lobby.item"));
+                if (ParkourOption.COMMUNITY.mayPerform(player))
+                    items.add(items.size(), Locales.getItem(player, "community.item"));
+                if (ParkourOption.SETTINGS.mayPerform(player))
+                    items.add(items.size(), Locales.getItem(player, "settings.item"));
+                if (ParkourOption.LOBBY.mayPerform(player))
+                    items.add(items.size(), Locales.getItem(player, "lobby.item"));
 
                 items.add(items.size(), Locales.getItem(player, "other.quit"));
 

@@ -2,7 +2,6 @@ package dev.efnilite.ip.menu.community;
 
 import dev.efnilite.ip.api.Registry;
 import dev.efnilite.ip.config.Locales;
-import dev.efnilite.ip.config.Option;
 import dev.efnilite.ip.leaderboard.Leaderboard;
 import dev.efnilite.ip.menu.Menus;
 import dev.efnilite.ip.menu.ParkourOption;

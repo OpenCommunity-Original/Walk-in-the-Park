@@ -72,5 +72,6 @@ public abstract class DynamicMenu {
      * Data class for registered items
      */
     protected record ItemContainer(int id, BiFunction<@NotNull Player, @Nullable ParkourUser, MenuItem> item,
-                                   Predicate<Player> predicate) {}
+                                   Predicate<Player> predicate) {
+    }
 }

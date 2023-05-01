@@ -4,7 +4,6 @@ import dev.efnilite.ip.api.Registry;
 import dev.efnilite.ip.config.Locales;
 import dev.efnilite.ip.config.Option;
 import dev.efnilite.ip.menu.Menus;
-import dev.efnilite.ip.menu.ParkourOption;
 import dev.efnilite.ip.mode.Mode;
 import dev.efnilite.ip.mode.MultiMode;
 import dev.efnilite.ip.player.ParkourUser;

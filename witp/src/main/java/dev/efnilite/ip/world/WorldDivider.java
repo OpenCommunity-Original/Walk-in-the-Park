@@ -84,6 +84,6 @@ public class WorldDivider {
         max.setY(Option.MAX_Y);
         min.setY(Option.MIN_Y);
 
-        return new Location[] { min, max };
+        return new Location[]{min, max};
     }
 }

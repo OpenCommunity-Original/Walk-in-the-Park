@@ -118,7 +118,7 @@ public class LegacySchematicMigrator {
                 .mapv((offset, data) -> noDuplicatePalette.get(data))
                 .get();
 
-        return new Object[] { noDuplicatePalette, offsetData };
+        return new Object[]{noDuplicatePalette, offsetData};
     }
 
     private Vector parseVector(String vector) {

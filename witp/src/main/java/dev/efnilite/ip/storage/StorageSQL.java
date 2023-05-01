@@ -29,17 +29,17 @@ public final class StorageSQL implements Storage {
     @Override
     public void init(String mode) {
         sendUpdate("""
-                    CREATE TABLE IF NOT EXISTS `%s`
-                    (
-                        uuid       CHAR(36) NOT NULL PRIMARY KEY,
-                        name       VARCHAR(16),
-                        time       VARCHAR(16),
-                        difficulty VARCHAR(3),
-                        score      INT
-                    )
-                    CHARSET = utf8 ENGINE = InnoDB;
-                    """
-                    .formatted(getTableName(mode)));
+                CREATE TABLE IF NOT EXISTS `%s`
+                (
+                    uuid       CHAR(36) NOT NULL PRIMARY KEY,
+                    name       VARCHAR(16),
+                    time       VARCHAR(16),
+                    difficulty VARCHAR(3),
+                    score      INT
+                )
+                CHARSET = utf8 ENGINE = InnoDB;
+                """
+                .formatted(getTableName(mode)));
     }
 
     @Override
@@ -56,9 +56,9 @@ public final class StorageSQL implements Storage {
     public @NotNull Map<UUID, Score> readScores(@NotNull String mode) {
         try (ResultSet results = sendQuery(
                 """
-                SELECT * FROM `%s`;
-                """
-                .formatted(getTableName(mode)))) {
+                        SELECT * FROM `%s`;
+                        """
+                        .formatted(getTableName(mode)))) {
 
             if (results == null) {
                 return new HashMap<>();
@@ -85,16 +85,16 @@ public final class StorageSQL implements Storage {
     public void writeScores(@NotNull String mode, @NotNull Map<UUID, Score> scores) {
         scores.forEach((uuid, score) -> sendUpdate(
                 """
-                INSERT INTO `%s`
-                    (uuid, name, time, difficulty, score)
-                VALUES ('%s', '%s', '%s', '%s', %d)
-                ON DUPLICATE KEY UPDATE name       = '%s',
-                                        time       = '%s',
-                                        difficulty = '%s',
-                                        score      = %d;
-                """
-                .formatted(getTableName(mode), uuid.toString(), score.name(), score.time(), score.difficulty(), score.score(),
-                        score.name(), score.time(), score.difficulty(), score.score())));
+                        INSERT INTO `%s`
+                            (uuid, name, time, difficulty, score)
+                        VALUES ('%s', '%s', '%s', '%s', %d)
+                        ON DUPLICATE KEY UPDATE name       = '%s',
+                                                time       = '%s',
+                                                difficulty = '%s',
+                                                score      = %d;
+                        """
+                        .formatted(getTableName(mode), uuid.toString(), score.name(), score.time(), score.difficulty(), score.score(),
+                                score.name(), score.time(), score.difficulty(), score.score())));
     }
 
     // returns leaderboard table name
@@ -106,9 +106,9 @@ public final class StorageSQL implements Storage {
     public void readPlayer(@NotNull ParkourPlayer player) {
         try (ResultSet results = sendQuery(
                 """
-                SELECT * FROM `%s` WHERE uuid = '%s';
-                """
-                .formatted("%soptions".formatted(Option.SQL_PREFIX), player.getUUID()))) {
+                        SELECT * FROM `%s` WHERE uuid = '%s';
+                        """
+                        .formatted("%soptions".formatted(Option.SQL_PREFIX), player.getUUID()))) {
 
             if (results == null) {
                 player.setSettings(new HashMap<>());

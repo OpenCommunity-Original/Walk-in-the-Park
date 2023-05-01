@@ -2,7 +2,6 @@ package dev.efnilite.ip.menu.settings;
 
 import dev.efnilite.ip.config.Locales;
 import dev.efnilite.ip.menu.DynamicMenu;
-import dev.efnilite.ip.menu.Menus;
 import dev.efnilite.ip.menu.ParkourOption;
 import dev.efnilite.ip.player.ParkourPlayer;
 import dev.efnilite.ip.player.ParkourUser;
