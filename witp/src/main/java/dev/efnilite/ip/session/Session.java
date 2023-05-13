@@ -6,6 +6,7 @@ import dev.efnilite.ip.player.ParkourPlayer;
 import dev.efnilite.ip.player.ParkourSpectator;
 import dev.efnilite.ip.player.ParkourUser;
 import dev.efnilite.ip.world.WorldDivider;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -77,7 +78,7 @@ public class Session {
             player.session = this;
 
             for (ParkourPlayer to : getPlayers()) {
-                to.send(Locales.getString(player.locale, "lobby.other_join").formatted(player.getName()));
+                to.send(Locales.getString((Player) player, "lobby.other_join").formatted(player.getName()));
             }
         }
 
@@ -100,7 +101,7 @@ public class Session {
             player.session = null;
 
             for (ParkourPlayer to : getPlayers()) {
-                to.send(Locales.getString(player.locale, "lobby.other_leave").formatted(player.getName()));
+                to.send(Locales.getString((Player) player, "lobby.other_leave").formatted(player.getName()));
             }
         }
 

@@ -152,12 +152,12 @@ public final class StorageSQL implements Storage {
                                         """
                 .formatted("%soptions".formatted(Option.SQL_PREFIX), player.getUUID(), player.style, player.blockLead,
                         player.particles, player.useSpecialBlocks, player.showFallMessage,
-                        player.showScoreboard, player.selectedTime, String.join(",", player.collectedRewards), player.locale,
+                        player.showScoreboard, player.selectedTime, String.join(",", player.collectedRewards), player,
                         player.schematicDifficulty, player.sound,
 
                         player.style, player.blockLead,
                         player.particles, player.useSpecialBlocks, player.showFallMessage,
-                        player.showScoreboard, player.selectedTime, String.join(",", player.collectedRewards), player.locale,
+                        player.showScoreboard, player.selectedTime, String.join(",", player.collectedRewards), player,
                         player.schematicDifficulty, player.sound));
     }
 
