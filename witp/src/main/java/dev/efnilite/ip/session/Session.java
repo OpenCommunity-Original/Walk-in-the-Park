@@ -78,7 +78,7 @@ public class Session {
             player.session = this;
 
             for (ParkourPlayer to : getPlayers()) {
-                to.send(Locales.getString((Player) player, "lobby.other_join").formatted(player.getName()));
+                to.send(Locales.getString(player.player, "lobby.other_join").formatted(player.getName()));
             }
         }
 
@@ -101,7 +101,7 @@ public class Session {
             player.session = null;
 
             for (ParkourPlayer to : getPlayers()) {
-                to.send(Locales.getString((Player) player, "lobby.other_leave").formatted(player.getName()));
+                to.send(Locales.getString(player.player, "lobby.other_leave").formatted(player.getName()));
             }
         }
 

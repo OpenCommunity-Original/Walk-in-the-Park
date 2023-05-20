@@ -82,7 +82,7 @@ public class SingleLeaderboardMenu {
             items.add(item);
         }
 
-        List<String> values = Locales.getStringList(null, "%s.sort.values".formatted(ParkourOption.LEADERBOARDS.path));
+        List<String> values = Locales.getStringList(player, "%s.sort.values".formatted(ParkourOption.LEADERBOARDS.path));
 
         String name = switch (sort) {
             case SCORE -> values.get(0);
