@@ -91,7 +91,7 @@ public class SchematicPaster {
 
             return new ArrayList<>(blocks.keySet());
         } catch (InterruptedException | ExecutionException ex) {
-            IP.logging().stack("Error while trying to get blocks of schematic", ex);
+            IP.logging().severe("Error while trying to get blocks of schematic" + ex);
 
             return Collections.emptyList();
         }

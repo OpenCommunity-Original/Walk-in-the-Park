@@ -106,7 +106,7 @@ public abstract class ParkourUser {
                 user.board.delete();
             }
         } catch (Exception ex) { // safeguard to prevent people from losing data
-            IP.logging().stack("Error while trying to make player %s leave".formatted(user.getName()), ex);
+            IP.logging().severe("Error while trying to make player %s leave".formatted(user.getName()) + ex);
             user.send("<red><bold>There was an error while trying to handle leaving.");
         }
 
@@ -134,7 +134,7 @@ public abstract class ParkourUser {
         try {
             player.sendPluginMessage(IP.getPlugin(), "BungeeCord", out.toByteArray());
         } catch (ChannelNotRegisteredException ex) {
-            IP.logging().stack("Error while trying to send %s to server %s. This server is not registered.".formatted(player.getName(), server), ex);
+            IP.logging().severe("Error while trying to send %s to server %s. This server is not registered.".formatted(player.getName(), server) + ex);
             player.kickPlayer("Couldn't move you to %s. Please rejoin.".formatted(server));
         }
     }

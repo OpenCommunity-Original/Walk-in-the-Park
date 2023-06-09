@@ -56,7 +56,7 @@ public class InventoryData {
 
             onFinish.accept(this);
         } catch (IOException | ClassNotFoundException ex) {
-            IP.logging().stack("Error while reading inventory of %s from file %s".formatted(player.getName(), file.getName()), ex);
+            IP.logging().severe("Error while reading inventory of %s from file %s".formatted(player.getName(), file.getName()) + ex);
             onFinish.accept(null);
         }
     }
@@ -93,14 +93,14 @@ public class InventoryData {
             file.getParentFile().mkdirs();
             file.createNewFile();
         } catch (IOException ex) {
-            IP.logging().stack("Error while creating file to save inventory of %s to file %s".formatted(player.getName(), file.getName()), ex);
+            IP.logging().severe("Error while creating file to save inventory of %s to file %s".formatted(player.getName(), file.getName()) + ex);
         }
 
         try (ObjectOutputStream stream = new BukkitObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)))) {
             stream.writeObject(items);
             stream.flush();
         } catch (IOException ex) {
-            IP.logging().stack("Error while saving inventory of %s to file %s".formatted(player.getName(), file.getName()), ex);
+            IP.logging().severe("Error while saving inventory of %s to file %s".formatted(player.getName(), file.getName()) + ex);
         }
     }
 }

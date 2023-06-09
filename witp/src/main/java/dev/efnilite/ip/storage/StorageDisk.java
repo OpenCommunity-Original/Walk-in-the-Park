@@ -55,7 +55,7 @@ public final class StorageDisk implements Storage {
 
             return scores;
         } catch (IOException ex) {
-            IP.logging().stack("Error while trying to read leaderboard file %s".formatted(mode), ex);
+            IP.logging().severe("Error while trying to read leaderboard file %s".formatted(mode) +  ex);
             return new HashMap<>();
         }
     }
@@ -72,7 +72,7 @@ public final class StorageDisk implements Storage {
             IP.getGson().toJson(container, writer);
             writer.flush();
         } catch (IOException ex) {
-            IP.logging().stack("Error while trying to write to leaderboard file %s".formatted(mode), ex);
+            IP.logging().severe("Error while trying to write to leaderboard file %s".formatted(mode) + ex);
         }
     }
 
@@ -111,7 +111,7 @@ public final class StorageDisk implements Storage {
 
             player.setSettings(settings);
         } catch (IOException ex) {
-            IP.logging().stack("Error while trying to read disk data of %s".formatted(player.getName()), ex);
+            IP.logging().severe("Error while trying to read disk data of %s".formatted(player.getName()) + ex);
         }
     }
 
@@ -125,7 +125,7 @@ public final class StorageDisk implements Storage {
             IP.getGson().toJson(player, writer);
             writer.flush();
         } catch (IOException ex) {
-            IP.logging().stack("Error while trying to write disk data of %s to file %s".formatted(player.getName(), file), ex);
+            IP.logging().severe("Error while trying to write disk data of %s to file %s".formatted(player.getName(), file) + ex);
         }
     }
 
@@ -138,7 +138,7 @@ public final class StorageDisk implements Storage {
             file.getParentFile().mkdirs();
             file.createNewFile();
         } catch (IOException ex) {
-            IP.logging().stack("Error while trying to create file %s".formatted(file), ex);
+            IP.logging().severe("Error while trying to create file %s".formatted(file) + ex);
         }
     }
 

@@ -87,7 +87,7 @@ public class PreviousData {
                 player.addPotionEffect(effect);
             }
         } catch (Exception ex) { // not the best way to do this... too bad!
-            IP.logging().stack("Error while recovering stats of %s".formatted(player.getName()), ex);
+            IP.logging().severe("Error while recovering stats of %s".formatted(player.getName()) + ex);
         }
 
         if (inventoryData != null) {

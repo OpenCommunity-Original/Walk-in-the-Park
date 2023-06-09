@@ -48,7 +48,7 @@ public final class StorageSQL implements Storage {
             connection.close();
             IP.logging().info("Closed connection to MySQL");
         } catch (SQLException ex) {
-            IP.logging().stack("Error while trying to close connection to SQL database", ex);
+            IP.logging().severe("Error while trying to close connection to SQL database" + ex);
         }
     }
 
@@ -76,7 +76,7 @@ public final class StorageSQL implements Storage {
 
             return scores;
         } catch (SQLException ex) {
-            IP.logging().stack("Error while trying to read SQL data of %s".formatted(mode), ex);
+            IP.logging().severe("Error while trying to read SQL data of %s".formatted(mode) + ex);
             return new HashMap<>();
         }
     }
@@ -120,14 +120,14 @@ public final class StorageSQL implements Storage {
                 try {
                     return results.getObject(key);
                 } catch (SQLException ex) {
-                    IP.logging().stack("Error while trying to read SQL data of %s, option = %s".formatted(player.getName(), key), ex);
+                    IP.logging().severe("Error while trying to read SQL data of %s, option = %s".formatted(player.getName(), key) + ex);
                     return null;
                 }
             }).get();
 
             player.setSettings(settings);
         } catch (SQLException ex) {
-            IP.logging().stack("Error while trying to read SQL data of %s".formatted(player.getName()), ex);
+            IP.logging().severe("Error while trying to read SQL data of %s".formatted(player.getName()) + ex);
         }
     }
 
@@ -200,7 +200,7 @@ public final class StorageSQL implements Storage {
 
             IP.logging().info("Connected to MySQL");
         } catch (Exception ex) {
-            IP.logging().stack("Could not connect to MySQL", "check your SQL settings in the config", ex);
+            IP.logging().severe("Could not connect to MySQL");
             Bukkit.getPluginManager().disablePlugin(IP.getPlugin()); // disable plugin since data handling without db will go horribly wrong
         }
     }
@@ -211,7 +211,7 @@ public final class StorageSQL implements Storage {
                 connect();
             }
         } catch (Exception ex) {
-            IP.logging().stack("Error while trying to reconnect to MySQL", ex);
+            IP.logging().severe("Error while trying to reconnect to MySQL" + ex);
         }
     }
 
@@ -222,7 +222,7 @@ public final class StorageSQL implements Storage {
         try {
             return connection.prepareStatement(sql).executeQuery();
         } catch (SQLException ex) {
-            IP.logging().stack("Error while sending query %s".formatted(sql), ex);
+            IP.logging().severe("Error while sending query %s".formatted(sql) + ex);
             return null;
         }
     }
@@ -234,7 +234,7 @@ public final class StorageSQL implements Storage {
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.executeUpdate();
         } catch (SQLException ex) {
-            IP.logging().stack("Error while sending query %s".formatted(sql), ex);
+            IP.logging().severe("Error while sending query %s".formatted(sql) + ex);
         }
     }
 

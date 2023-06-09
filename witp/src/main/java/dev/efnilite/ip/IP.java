@@ -22,10 +22,12 @@ import dev.efnilite.vilib.util.elevator.GitElevator;
 import dev.efnilite.vilib.util.elevator.VersionComparator;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginLogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
+import java.util.logging.Logger;
 
 /**
  * Main class of Infinite Parkour
@@ -42,6 +44,8 @@ public final class IP extends ViPlugin {
     private static IP instance;
     private static Storage storage;
 
+    PluginLogger logging = new PluginLogger(this);
+
     @Nullable
     private static PAPIHook placeholderHook;
 
@@ -56,24 +60,24 @@ public final class IP extends ViPlugin {
 
         Plugin vilib = getServer().getPluginManager().getPlugin("vilib");
         if (vilib == null || !vilib.isEnabled()) {
-            logging.error("##");
-            logging.error("## Infinite Parkour requires vilib to work!");
-            logging.error("##");
-            logging.error("## Please download it here:");
-            logging.error("## https://github.com/Efnilite/vilib/releases/latest");
-            logging.error("##");
+            logging.severe("##");
+            logging.severe("## Infinite Parkour requires vilib to work!");
+            logging.severe("##");
+            logging.severe("## Please download it here:");
+            logging.severe("## https://github.com/Efnilite/vilib/releases/latest");
+            logging.severe("##");
 
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
 
         if (!VersionComparator.FROM_SEMANTIC.isLatest(REQUIRED_VILIB_VERSION, vilib.getDescription().getVersion())) {
-            logging.error("##");
-            logging.error("## Infinite Parkour requires *a newer version* of vilib to work!");
-            logging.error("##");
-            logging.error("## Please download it here: ");
-            logging.error("## https://github.com/Efnilite/vilib/releases/latest");
-            logging.error("##");
+            logging.severe("##");
+            logging.severe("## Infinite Parkour requires *a newer version* of vilib to work!");
+            logging.severe("##");
+            logging.severe("## Please download it here: ");
+            logging.severe("## https://github.com/Efnilite/vilib/releases/latest");
+            logging.severe("##");
 
             getServer().getPluginManager().disablePlugin(this);
             return;
@@ -163,8 +167,8 @@ public final class IP extends ViPlugin {
     /**
      * @return This plugin's {@link Logging} instance.
      */
-    public static Logging logging() {
-        return getPlugin().logging;
+    public static @NotNull Logger logging() {
+        return getPlugin().getLogger();
     }
 
     /**

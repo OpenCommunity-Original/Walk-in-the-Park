@@ -61,7 +61,7 @@ public record RewardString(@NotNull String string) {
             try {
                 VaultHook.deposit(player.player, Double.parseDouble(string));
             } catch (NumberFormatException ex) {
-                IP.logging().stack("Error while trying to process Vault reward", "check your rewards file for incorrect numbers", ex);
+                IP.logging().severe("Error while trying to process Vault reward");
             }
         } else {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), string);

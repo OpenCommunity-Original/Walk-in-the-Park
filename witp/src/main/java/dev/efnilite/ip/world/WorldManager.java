@@ -32,7 +32,7 @@ public interface WorldManager {
         }
 
         if (world != null) {
-            IP.logging().warn("Crash detected! The parkour world loading twice is not usual behaviour. This only happens after a server crash.");
+            IP.logging().severe("Crash detected! The parkour world loading twice is not usual behaviour. This only happens after a server crash.");
         }
 
         WorldManager manager = getInstance();

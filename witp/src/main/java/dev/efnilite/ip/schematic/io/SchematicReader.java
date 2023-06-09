@@ -49,7 +49,7 @@ public class SchematicReader {
             // create final map by parse Map<String, Object> -> Vector and applying possible State
             return Colls.thread(offsets).mapkv(this::fromString, paletteRef::get).get();
         } catch (IOException | ClassNotFoundException ex) {
-            IP.logging().stack("Error while trying to read schematic %s".formatted(file), ex);
+            IP.logging().severe("Error while trying to read schematic %s".formatted(file) + ex);
         }
 
         return null;

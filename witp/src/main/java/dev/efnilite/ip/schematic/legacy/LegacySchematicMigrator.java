@@ -30,7 +30,7 @@ public class LegacySchematicMigrator {
                 });
 
         } catch (IOException ex) {
-            IP.logging().stack("Error while migrating schematics", ex);
+            IP.logging().severe("Error while migrating schematics" + ex);
         }
     }
 
@@ -40,7 +40,7 @@ public class LegacySchematicMigrator {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             lines = reader.lines().toList(); // read the lines of the file
         } catch (IOException ex) {
-            IP.logging().stack("Error while reading file", ex);
+            IP.logging().severe("Error while reading file" + ex);
             return;
         }
 
@@ -58,7 +58,7 @@ public class LegacySchematicMigrator {
             stream.writeObject(offsetData);
             stream.flush();
         } catch (IOException ex) {
-            IP.logging().stack("Error while trying to save schematic %s".formatted(file), ex);
+            IP.logging().severe("Error while trying to save schematic %s".formatted(file) + ex);
         }
     }
 

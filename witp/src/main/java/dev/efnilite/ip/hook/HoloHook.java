@@ -16,10 +16,10 @@ public class HoloHook {
         try {
             Class.forName("me.filoghost.holographicdisplays.api.HolographicDisplaysAPI");
         } catch (Exception ex) {
-            IP.logging().warn("##");
-            IP.logging().warn("## IP only supports Holographic Displays v3.0.0 or higher!");
-            IP.logging().warn("## This hook will now be disabled.");
-            IP.logging().warn("##");
+            IP.logging().severe("##");
+            IP.logging().severe("## IP only supports Holographic Displays v3.0.0 or higher!");
+            IP.logging().severe("## This hook will now be disabled.");
+            IP.logging().severe("##");
             return;
         }
 

@@ -82,7 +82,7 @@ public class Option {
         WORLD_NAME = Config.CONFIG.getString("world.name");
 
         if (!WORLD_NAME.matches("[a-zA-Z0-9_-]+")) {
-            IP.logging().stack("Invalid world name: %s".formatted(WORLD_NAME), "world names need to contain only a-z, A-Z, 0-9, _ or -.");
+            IP.logging().severe("Invalid world name: %s".formatted(WORLD_NAME) + " world names need to contain only a-z, A-Z, 0-9, _ or -.");
 
             WORLD_NAME = "witp";
         }
@@ -133,7 +133,7 @@ public class Option {
         POSSIBLE_LEADS = Config.CONFIG.getIntList("options.leads.amount");
         for (int lead : new ArrayList<>(POSSIBLE_LEADS)) {
             if (lead < 1 || lead > 128) {
-                IP.logging().error("Invalid lead: %d. Should be above 1 and below 128.".formatted(lead));
+                IP.logging().severe("Invalid lead: %d. Should be above 1 and below 128.".formatted(lead));
                 POSSIBLE_LEADS.remove((Object) lead);
             }
         }
@@ -194,7 +194,7 @@ public class Option {
             SOUND_TYPE = Sound.valueOf(value);
         } catch (IllegalArgumentException ex) {
             SOUND_TYPE = Sound.valueOf("BLOCK_NOTE_PLING");
-            IP.logging().error("Invalid sound: %s".formatted(value));
+            IP.logging().severe("Invalid sound: %s".formatted(value));
         }
 
         value = Config.CONFIG.getString("particles.particle-type");
@@ -202,7 +202,7 @@ public class Option {
             PARTICLE_TYPE = Particle.valueOf(value);
         } catch (IllegalArgumentException ex) {
             PARTICLE_TYPE = Particle.valueOf("SPELL_INSTANT");
-            IP.logging().error("Invalid particle type: %s".formatted(value));
+            IP.logging().severe("Invalid particle type: %s".formatted(value));
         }
 
         SOUND_PITCH = Config.CONFIG.getInt("particles.sound-pitch");
@@ -285,7 +285,7 @@ public class Option {
             MIN_Y = 100;
             MAX_Y = 200;
 
-            IP.logging().stack("Provided minimum y is the same or larger than maximum y!", "check your generation.yml file");
+            IP.logging().info("Provided minimum y is the same or larger than maximum y! " + "check your generation.yml file");
         }
     }
 
@@ -313,7 +313,7 @@ public class Option {
                         Material material = Material.getMaterial(name.toUpperCase());
 
                         if (material == null) {
-                            IP.logging().warn("Unknown material %s in style %s".formatted(name, style));
+                            IP.logging().severe("Unknown material %s in style %s".formatted(name, style));
                             return Material.SMOOTH_QUARTZ.createBlockData();
                         }
 

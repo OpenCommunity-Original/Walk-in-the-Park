@@ -70,8 +70,8 @@ public final class Island {
             session.generator.startTick();
             session.getPlayers().forEach(pp -> pp.setup(ps));
         } catch (NoSuchElementException ex) {
-            IP.logging().stack("Error while trying to find parkour or player spawn in schematic %s".formatted(schematic.getFile().getName()),
-                    "check if you used the same material as the one in generation.yml", ex);
+            IP.logging().severe("Error while trying to find parkour or player spawn in schematic %s".formatted(schematic.getFile().getName()) +
+                    "check if you used the same material as the one in generation.yml" + ex);
 
             blocks.forEach(block -> block.setType(Material.AIR));
         }

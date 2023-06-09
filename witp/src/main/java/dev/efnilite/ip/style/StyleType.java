@@ -58,7 +58,7 @@ public abstract class StyleType {
         List<String> list = Util.getChildren(file, path, false);
 
         if (list.isEmpty()) {
-            IP.logging().error("Style path " + path + " not found");
+            IP.logging().severe("Style path " + path + " not found");
             return;
         }
 
@@ -83,7 +83,7 @@ public abstract class StyleType {
         String possible = file.getString(path + "." + name);
 
         if (possible == null) {
-            IP.logging().warn("Style at path " + path + " doesn't exist but is registered!");
+            IP.logging().severe("Style at path " + path + " doesn't exist but is registered!");
             return null;
         }
 

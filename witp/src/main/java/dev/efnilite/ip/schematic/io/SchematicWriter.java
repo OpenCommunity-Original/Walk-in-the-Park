@@ -41,7 +41,7 @@ public class SchematicWriter {
             stream.writeObject(offsetData);
             stream.flush();
         } catch (IOException ex) {
-            IP.logging().stack("Error while trying to save schematic %s".formatted(file), ex);
+            IP.logging().severe("Error while trying to save schematic %s".formatted(file) + ex);
         }
     }
 

@@ -89,7 +89,7 @@ public enum Config {
         try {
             ConfigUpdater.update(IP.getPlugin(), fileName, path, ignoredSections);
         } catch (Exception ex) {
-            IP.logging().stack("Error while trying to update config file", ex);
+            IP.logging().severe("Error while trying to update config file " + ex);
         }
     }
 

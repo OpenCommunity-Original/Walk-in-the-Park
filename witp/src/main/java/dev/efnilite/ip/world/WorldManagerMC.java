@@ -32,7 +32,7 @@ public class WorldManagerMC implements WorldManager {
 
             world = Bukkit.createWorld(creator);
         } catch (Exception ex) {
-            IP.logging().stack("Error while trying to create the parkour world", "delete the parkour world folder and restart the server", ex);
+            IP.logging().severe("Error while trying to create the parkour world");
         }
         return world;
     }
@@ -53,7 +53,7 @@ public class WorldManagerMC implements WorldManager {
                     .map(Path::toFile)
                     .forEach(File::delete);
         } catch (Exception ex) {
-            IP.logging().stack("Error while trying to delete the parkour world", ex);
+            IP.logging().severe("Error while trying to delete the parkour world" + ex);
         }
     }
 }

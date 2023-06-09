@@ -62,15 +62,13 @@ public class Rewards {
                 int value = Integer.parseInt(score);
 
                 if (value < 1) {
-                    IP.logging().stack("Error while trying to read rewards",
-                            "check the rewards file for incorrect numbers",
-                            new IllegalArgumentException("%s is not a valid score".formatted(value)));
+                    IP.logging().severe("Error while trying to read rewards");
                     continue;
                 }
 
                 rewardMap.put(value, rewardStrings);
             } catch (NumberFormatException ex) {
-                IP.logging().stack("Error while trying to read rewards", "check the rewards file for incorrect numbers", ex);
+                IP.logging().severe("Error while trying to read rewards");
             }
         }
 

@@ -493,9 +493,9 @@ public class ParkourGenerator {
         stopped = !regenerate;
 
         if (!regenerate && task == null) {
-            IP.logging().warn("## Incomplete joining setup.");
-            IP.logging().warn("## There has probably been an error somewhere. Please report this error!");
-            IP.logging().warn("## You don't have to report this warning.");
+            IP.logging().severe("## Incomplete joining setup.");
+            IP.logging().severe("## There has probably been an error somewhere. Please report this error!");
+            IP.logging().severe("## You don't have to report this warning.");
         }
 
         lastPositionIndexPlayer = 0;
@@ -615,7 +615,7 @@ public class ParkourGenerator {
             new ParkourSchematicGenerateEvent(schematic, this, player).call();
 
             if (schematicBlocks.isEmpty()) {
-                IP.logging().stack("Error while trying to paste schematic %s".formatted(schematic.getFile().getName()), new NoSuchElementException("No schematic blocks found"));
+                IP.logging().severe("Error while trying to paste schematic %s".formatted(schematic.getFile().getName()) + new NoSuchElementException("No schematic blocks found"));
                 return;
             }
 
@@ -627,7 +627,7 @@ public class ParkourGenerator {
         List<Block> blocks = selectBlocks();
 
         if (blocks.isEmpty()) {
-            IP.logging().stack("Error while trying to generate parkour", new NoSuchElementException("No blocks to generate found"));
+            IP.logging().severe("Error while trying to generate parkour" + new NoSuchElementException("No blocks to generate found"));
             return;
         }
 
@@ -668,11 +668,11 @@ public class ParkourGenerator {
                 .findAny();
 
         if (optionalStart.isEmpty()) {
-            IP.logging().stack("Error while trying to find start of schematic", "check if you placed a lime wool block");
+            IP.logging().severe("Error while trying to find start of schematic " + "check if you placed a lime wool block");
             return Collections.emptyList();
         }
         if (optionalEnd.isEmpty()) {
-            IP.logging().stack("Error while trying to find end of schematic", "check if you placed a red wool block");
+            IP.logging().severe("Error while trying to find end of schematic " + "check if you placed a red wool block");
             return Collections.emptyList();
         }
 

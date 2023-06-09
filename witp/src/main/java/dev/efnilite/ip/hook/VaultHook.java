@@ -27,7 +27,7 @@ public class VaultHook {
             RegisteredServiceProvider<Economy> service = Bukkit.getServicesManager().getRegistration(Economy.class);
 
             if (service == null) {
-                IP.logging().stack("Error while trying to fetch the Vault economy", new NoSuchElementException("No economy found"));
+                IP.logging().severe("Error while trying to fetch the Vault economy");
                 return;
             }
 
