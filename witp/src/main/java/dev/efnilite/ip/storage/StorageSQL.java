@@ -4,7 +4,7 @@ import dev.efnilite.ip.IP;
 import dev.efnilite.ip.config.Option;
 import dev.efnilite.ip.leaderboard.Score;
 import dev.efnilite.ip.player.ParkourPlayer;
-import dev.efnilite.ip.util.Colls;
+import dev.efnilite.vilib.util.Colls;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 
@@ -115,7 +115,13 @@ public final class StorageSQL implements Storage {
                 return;
             }
 
-            results.next(); // move cursor
+            boolean hasNext = results.next(); // move cursor
+
+            if (!hasNext) {
+                player.setSettings(new HashMap<>());
+                return;
+            }
+
             Map<String, Object> settings = Colls.thread(ParkourPlayer.PLAYER_COLUMNS).mapv((key, value) -> {
                 try {
                     return results.getObject(key);

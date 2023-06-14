@@ -5,12 +5,12 @@
     <parent>
         <artifactId>IP</artifactId>
         <groupId>dev.efnilite</groupId>
-        <version>5.0.0</version>
+        <version>5.1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>witp</artifactId>
-    <version>5.0.0</version>
+    <version>5.1.0</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -87,7 +87,7 @@
         <dependency>
             <groupId>com.github.Efnilite</groupId>
             <artifactId>vilib</artifactId>
-            <version>1.1.1</version>
+            <version>4df6c10a45</version>
             <scope>provided</scope>
         </dependency>
 
@@ -147,4 +147,13 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 </project>
