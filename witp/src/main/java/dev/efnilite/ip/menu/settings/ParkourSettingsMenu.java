@@ -306,7 +306,7 @@ public class ParkourSettingsMenu extends DynamicMenu {
                 .addToDisplay(items)
                 .nextPage(26, new Item(Material.LIME_DYE, "<#0DCB07><bold>»").click(event -> menu.page(1)))
                 .prevPage(18, new Item(Material.RED_DYE, "<#DE1F1F><bold>«").click(event -> menu.page(-1)))
-                .item(22, Locales.getItem(player.locale, "other.close").click(event -> open(player)))
+                .item(22, Locales.getItem(player.player, "other.close").click(event -> open(player)))
                 .fillBackground(Util.isBedrockPlayer(player.player) ? Material.AIR : Material.GRAY_STAINED_GLASS_PANE).open(player.player);
     }
 
@@ -321,7 +321,7 @@ public class ParkourSettingsMenu extends DynamicMenu {
             return handleSettingChange(player, onAllowed);
         }
 
-        event.menu().item(event.slot(), new TimedItem(Locales.getItem(player.locale, "settings.parkour_settings.items.no_change").click((event1) -> {}), event).stay(5 * 20));
+        event.menu().item(event.slot(), new TimedItem(Locales.getItem(player.player, "settings.parkour_settings.items.no_change").click((event1) -> {}), event).stay(5 * 20));
         event.menu().updateItem(event.slot());
         return false;
 

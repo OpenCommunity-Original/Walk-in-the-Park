@@ -73,7 +73,6 @@ public class Option {
         GO_BACK_LOC.setYaw(Float.parseFloat(axes[1]));
 
         // General settings
-        AUTO_UPDATER = Config.CONFIG.getBoolean("auto-updater");
         JOINING = Config.CONFIG.getBoolean("joining");
         SPAWNONLY = Config.CONFIG.getBoolean("spawn_only");
 

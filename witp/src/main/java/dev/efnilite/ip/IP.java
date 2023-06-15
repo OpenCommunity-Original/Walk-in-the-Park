@@ -41,19 +41,17 @@ public final class IP extends ViPlugin {
     public static final String PREFIX = NAME + " <dark_gray>» <gray>";
     public static final String REQUIRED_VILIB_VERSION = "1.2.0";
 
-    private static Logging logging;
+    PluginLogger logging = new PluginLogger(this);
     private static IP instance;
     private static Storage storage;
-
-    PluginLogger logging = new PluginLogger(this);
 
     @Nullable
     private static PAPIHook placeholderHook;
 
+
     @Override
     public void onLoad() {
         instance = this;
-        logging = new Logging(this);
     }
 
     @Override
@@ -155,7 +153,7 @@ public final class IP extends ViPlugin {
     @Override
     @NotNull
     public GitElevator getElevator() {
-        return new GitElevator("Efnilite/Walk-in-the-Park", this, VersionComparator.FROM_SEMANTIC, Option.AUTO_UPDATER);
+        return new GitElevator("", this, VersionComparator.FROM_SEMANTIC, false);
     }
 
     /**
@@ -165,10 +163,6 @@ public final class IP extends ViPlugin {
     public static File getInFolder(String child) {
         return new File(instance.getDataFolder(), child);
     }
-
-    /**
-     * @return This plugin's {@link Logging} instance.
-     */
     public static @NotNull Logger logging() {
         return getPlugin().getLogger();
     }
